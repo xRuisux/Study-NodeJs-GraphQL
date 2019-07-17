@@ -35,7 +35,7 @@ export class PessoaService {
     public updatePessoa(id: string, nome: string) {
         return new Promise((resolve, reject) => {
             db.run(
-                'UPDATE pessoa SET nome = ?' + 'WHERE(id = ?);', [nome, id], (err) => {
+                'UPDATE pessoa SET nome = ?' + 'WHERE id = ?', [nome, id], (err) => {
                     return !err ? resolve({message: 'Pessoa ' + id + ' foi atualizada com sucesso'}) : reject(new HttpException(err, 500));
             });
         });

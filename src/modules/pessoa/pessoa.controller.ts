@@ -8,7 +8,7 @@ export class PessoaController {
         private pessoaService: PessoaService,
     ) {}
 
-     @Get()
+    @Get()
     public async getAllPessoas(@Response() res) {
         const pessoas = await this.pessoaService.getAllPessoas();
         res.status(HttpStatus.OK).json(pessoas);
