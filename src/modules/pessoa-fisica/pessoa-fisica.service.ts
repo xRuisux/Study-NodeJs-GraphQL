@@ -51,8 +51,7 @@ export class PessoaFisicaService {
 
     public deletePessoaFisica(cpf: string) {
         return new Promise((resolve, reject) => {
-            const id = db.run('SELECT pessoa_id From pessoa_fisica WHERE cpf = ?', [cpf]);
-            db.run('DELETE FROM pessoa WHERE id = ?', [id], (err) => {
+            db.run('DELETE FROM pessoa WHERE id = (SELECT pessoa_id From pessoa_fisica WHERE cpf = ?)', [cpf], (err) => {
                 return !err ? resolve({message: 'Pessoa Fisica com cpf: ' + cpf + ' foi atualizada'}) : reject(new HttpException(err, 500));
             });
         });

@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Request, Response, Body, Param, HttpStatus } from '@nestjs/common';
 import { PessoaService } from './pessoa.service';
+import { PdfClass } from '../../utils/pdf';
 
 @Controller('pessoa')
 export class PessoaController {
@@ -36,5 +37,10 @@ export class PessoaController {
     public async deletePessoa(@Response() res, @Param('id') id) {
         const resultado = await this.pessoaService.deletePessoa(id);
         res.status(HttpStatus.ACCEPTED).json(resultado);
+    }
+
+    @Get('/pdf')
+    public createPdf() {
+        this.createPdf();
     }
 }
