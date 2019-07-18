@@ -3,7 +3,7 @@ import * as sqlite3 from 'sqlite3';
 const sqlite = new sqlite3.Database('./sqlite', (err) => {
     if (err) {
         console.log('Error when creating the database', err);
-    } else { 
+    } else {
         console.log('Database created!');
     }
 });
@@ -37,11 +37,11 @@ const sqlContatos = 'CREATE TABLE IF NOT EXISTS contatos (' +
 const sqlPopularPessoa = 'INSERT OR IGNORE INTO pessoa(nome) VALUES ("Luiz"), ("Thiago"), ("Paulo"), ("Emprel"), ("Indra")';
 const sqlPopularPessoaFisica = 'INSERT INTO pessoa_fisica VALUES (12332121123, 1)';
 const sqlPopularPessoaJuridica = 'INSERT INTO pessoa_juridica VALUES (123321123, 4), (12341876123, 5)';
-const sqlPopularContatos = 'INSERT INTO contatos VALUES ("telefone", 3321-3123, 1), ("celular", 1111-2222, 3)';
+const sqlPopularContatos = 'INSERT INTO contatos VALUES ("telefone", "3321-3123", 1), ("celular", "1111-2222", 3)';
 const sqlDeletePessoa = 'DROP TABLE IF EXISTS pessoa;';
 const sqlDeletePessoaFisica = 'DROP TABLE IF EXISTS pessoa_fisica;';
 const sqlDeletePessoaJuridica = 'DROP TABLE IF EXISTS pessoa_juridica;';
-const sqlDeleteContato = 'DROP TABLE IF EXISTS constatos';
+const sqlDeleteContato = 'DROP TABLE IF EXISTS contatos';
 
 sqlite.serialize(() => {
     sqlite.run(sqlDeletePessoa);
