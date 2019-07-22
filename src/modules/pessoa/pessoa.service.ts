@@ -1,5 +1,6 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { db } from '../../db/sqlite';
+import { CreatePessoaDto } from './pessoa.dto';
 
 @Injectable()
 export class PessoaService {
@@ -8,7 +9,13 @@ export class PessoaService {
         return new Promise((resolve, reject) => {
             db.all(
                 'SELECT * FROM pessoa', (err, rows) => {
-                return !err ? resolve(rows) : reject(new HttpException(err, 500));
+                    const listPessoas = [];
+                    // tslint:disable-next-line: prefer-for-of
+                    for (let i = 0; i < rows.length; i++) {
+                    const pessoa = rows[i];
+                    listPessoas.push(pessoa);
+                }
+                    return !err ? resolve(listPessoas) : reject(new HttpException(err, 500));
             });
         });
     }
@@ -22,11 +29,11 @@ export class PessoaService {
         });
     }
 
-    public createPessoa(nome: string) {
+    public createPessoa(pessoaDto: CreatePessoaDto) {
         return new Promise((resolve, reject) => {
             db.run(
                 'INSERT INTO pessoa (nome)' +
-                'VALUES (?)', [nome], (err) => {
+                'VALUES (?)', [pessoaDto.nome], (err) => {
                     return !err ? resolve({message: 'Pessoa criada.'}) : reject(new HttpException(err, 500));
             });
         });

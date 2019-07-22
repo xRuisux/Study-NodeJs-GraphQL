@@ -3,9 +3,21 @@ import { PessoaModule } from './modules/pessoa/pessoa.module';
 import { PessoaFisicaModule } from './modules/pessoa-fisica/pessoa-fisica.module';
 import { PessoaJuridicaModule } from './modules/pessoa-juridica/pessoa-Juridica.module';
 import { ContatoModule } from './modules/contato/contato.module';
+import { GraphQLModule } from '@nestjs/graphql';
 
 @Module({
-  imports: [ PessoaModule, PessoaFisicaModule, PessoaJuridicaModule, ContatoModule],
+  imports: [
+    PessoaModule,
+    PessoaFisicaModule,
+    PessoaJuridicaModule,
+    ContatoModule,
+    GraphQLModule.forRoot({
+      typePaths: ['./modules/*.graphql'],
+      autoSchemaFile: 'schema.gql',
+      debug: false,
+      playground: false,
+    }),
+  ],
   controllers: [],
   providers: [],
 })
