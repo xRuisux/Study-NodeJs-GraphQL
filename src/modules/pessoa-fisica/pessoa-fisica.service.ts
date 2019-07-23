@@ -1,5 +1,6 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { db } from '../../db/sqlite';
+import { CreatePessoaFisicaDto } from './pessoa-fisica.dto';
 
 @Injectable()
 export class PessoaFisicaService {
@@ -22,11 +23,11 @@ export class PessoaFisicaService {
         });
     }
 
-    public async createPessoaFisica(nome: string, cpf: string) {
-        await db.run('INSERT INTO pessoa (nome) VALUES (?)', [nome]);
+    public async createPessoaFisica(pessoaFisicaDto: CreatePessoaFisicaDto) {
+        await db.run('INSERT INTO pessoa (nome) VALUES (?)', [pessoaFisicaDto.nome]);
         let pessoaId = Object.values(await this.getLastId());
         pessoaId = pessoaId[0];
-        await db.run('INSERT INTO pessoa_fisica (cpf,pessoa_id) VALUES (?,?)', [cpf, pessoaId]);
+        await db.run('INSERT INTO pessoa_fisica (cpf,pessoa_id) VALUES (?,?)', [pessoaFisicaDto.cpf, pessoaId]);
     }
 
     public getLastId() {

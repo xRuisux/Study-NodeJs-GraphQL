@@ -12,10 +12,9 @@ import { GraphQLModule } from '@nestjs/graphql';
     PessoaJuridicaModule,
     ContatoModule,
     GraphQLModule.forRoot({
-      typePaths: ['./modules/*.graphql'],
-      autoSchemaFile: 'schema.gql',
+      typePaths: ['./**/*.graphql'],
+      installSubscriptionHandlers: true,
       debug: false,
-      playground: false,
     }),
   ],
   controllers: [],
