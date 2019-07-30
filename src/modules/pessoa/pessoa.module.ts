@@ -3,11 +3,11 @@ import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 // import { AuthMiddleware } from '../../middleware/auth.middleware';
 // import { PessoaController } from './pessoa.controller';
 import { PessoaService } from './pessoa.service';
-import { PessoasResolvers } from './pessoa.resolvers';
+import { PessoaResolvers } from './pessoa.resolvers';
 
 @Module({
     controllers: [ /*PessoaController*/ ],
-    providers: [ PessoaService, PessoasResolvers ],
+    providers: [ PessoaService, PessoaResolvers ],
 })
 
 export class PessoaModule {

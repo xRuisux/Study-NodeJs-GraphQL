@@ -13,14 +13,14 @@ const sqlPessoa = 'CREATE TABLE IF NOT EXISTS pessoa (' +
     ')';
 
 const sqlPessoaFisica = 'CREATE TABLE IF NOT EXISTS pessoa_fisica (' +
-    'cpf INTEGER PRIMARY KEY,' +
+    'cpf VACHAR PRIMARY KEY,' +
     'pessoa_id INTEGER NOT NULL,' +
     'FOREIGN KEY(pessoa_id) REFERENCES pessoa(id)' +
     'ON DELETE CASCADE' +
     ')';
 
 const sqlPessoaJuridica = 'CREATE TABLE IF NOT EXISTS pessoa_juridica (' +
-    'cnpj INTEGER PRIMARY KEY,' +
+    'cnpj VACHAR PRIMARY KEY,' +
     'pessoa_id INTEGER NOT NULL,' +
     'FOREIGN KEY(pessoa_id) REFERENCES pessoa(id)' +
     'ON DELETE CASCADE' +
@@ -35,8 +35,8 @@ const sqlContatos = 'CREATE TABLE IF NOT EXISTS contatos (' +
     ')';
 
 const sqlPopularPessoa = 'INSERT OR IGNORE INTO pessoa(nome) VALUES ("Luiz"), ("Thiago"), ("Paulo"), ("Emprel"), ("Indra")';
-const sqlPopularPessoaFisica = 'INSERT INTO pessoa_fisica VALUES (12332121123, 1)';
-const sqlPopularPessoaJuridica = 'INSERT INTO pessoa_juridica VALUES (123321123, 4), (12341876123, 5)';
+const sqlPopularPessoaFisica = 'INSERT INTO pessoa_fisica VALUES ("12332121123", 1)';
+const sqlPopularPessoaJuridica = 'INSERT INTO pessoa_juridica VALUES ("123321123", 4), ("12341876123", 5)';
 const sqlPopularContatos = 'INSERT INTO contatos VALUES ("telefone", "3321-3123", 1), ("celular", "1111-2222", 3)';
 const sqlDeletePessoa = 'DROP TABLE IF EXISTS pessoa;';
 const sqlDeletePessoaFisica = 'DROP TABLE IF EXISTS pessoa_fisica;';
